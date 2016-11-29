@@ -28,7 +28,7 @@ var api = require('./app/route');
 app.use('/api', api);
 
 app.get('/', function(req, res) {
-  res.sendFile(path.join(__dirname, 'app', 'index.html'));
+  res.sendFile(path.join(__dirname, 'app/views', 'index.html'));
 });
 
 app.get('*', function(req, res) {
