@@ -12,6 +12,7 @@ dotenv.load();
 
 var app = express();
 
+
 var server = require('http').Server(app);
 var io = require('socket.io').listen(server);
 app.set('port', process.env.PORT || 3000);
@@ -22,6 +23,9 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(expressValidator());
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+var api = require('./app/route');
+app.use('/api', api);
 
 app.get('/', function(req, res) {
   res.sendFile(path.join(__dirname, 'app', 'index.html'));
