@@ -7,10 +7,6 @@ var app = angular.module('MyApp', ['ngRoute'])
         templateUrl: 'partials/home.html',
         controller: 'HomeCtrl'
       })
-      .when('/contact', {
-        templateUrl: 'partials/location.html',
-        controller: 'LocationCtrl'
-      })
       .otherwise({
         templateUrl: 'partials/404.html'
       });
@@ -35,7 +31,8 @@ app.directive('map', function() {
             var markers = [];
 
             var map = new google.maps.Map(document.getElementById(attrs.id), myOptions);
-
+            scope.map = map;
+            
             var infoWindow = new google.maps.InfoWindow();
 
             google.maps.event.addListener(map, 'click', function(e) {

@@ -1,6 +1,27 @@
-<div class="container-fluid">
-  <div class="row">
-    <div class="col-sm-12">
+<div class="container">
+  <div class="panel">
+    <div class="panel-heading">
+      <h3 class="panel-title">Home</h3>
+    </div>
+    <div class="panel-body">
+      <div class="col-sm-4">
+        Choose starting point
+        <select  class="form-control" ng-model="startPoint">
+          <option ng-repeat="loc in listLocation.locations" value="{{ loc.code }}">{{loc.name}}</option>
+        </select>
+      </div>
+      <div class="col-sm-6">
+        <br/>
+        <button class="btn btn-info" ng-click="showTimeTravel()">Show Minimum Time Travel & Route</button>
+      </div>
+
+      <br/>
+      <div class="col-sm-12" id="routeExplanation">
+
+      </div>
+
+      <hr/>
+      <br/><br/>
       <map id="map_canvas"></map>
     </div>
   </div>
