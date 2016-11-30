@@ -29,7 +29,7 @@ app.directive('map', function() {
             console.log(scope);
 
             var myOptions = {
-                zoom: 18,
+                zoom: 15,
                 center: new google.maps.LatLng(-6.218658, 106.802645),
                 mapTypeId: google.maps.MapTypeId.ROADMAP
             };
