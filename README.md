@@ -39,4 +39,4 @@ First install [node.js](http://nodejs.org/). Then:
 
 ### show direction and with waypoints
 
-<img width="700" src="https://raw.githubusercontent.com/zainul/point_of_interest/master/media/1a48f817-858f-4f8b-8daf-9cc312462441.jpg" />
+<img width="700" src="https://raw.githubusercontent.com/zainul/point_of_interest/master/media/073f9686-4428-4bc8-8276-7758b5008bcc.jpg" />
