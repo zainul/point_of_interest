@@ -13,11 +13,35 @@
       <div class="col-sm-6">
         <br/>
         <button class="btn btn-info" ng-click="showTimeTravel()">Show Minimum Time Travel & Route</button>
+        &nbsp;&nbsp;
+        <button class="btn btn-success" ng-click="refresh()">Refresh</button>
       </div>
 
       <br/>
-      <div class="col-sm-12" id="routeExplanation">
+      <div class="col-sm-12">
+        <h4>Origin</h4>
+        {{ timeAndRoute.origin[0] || '' }}
+      </div>
+      <hr>
+      <br/><br/>
+      <div class="col-sm-12">
+        <h4>Destination</h4>
+        <div class="col-sm-12" ng-repeat="destination in timeAndRoute.destinations">
+          <div class="row">
+            <div class="col-sm-10">
+              {{ destination.end_address }}
+            </div>
 
+            <div class="col-sm-1">
+              {{ destination.distance.text }}
+            </div>
+
+            <div class="col-sm-1">
+              {{ destination.duration.text }}
+            </div>
+          </div>
+          <hr/>
+        </div>
       </div>
 
       <hr/>

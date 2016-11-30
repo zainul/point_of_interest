@@ -2,6 +2,7 @@ angular.module('MyApp')
   .controller('HomeCtrl', function($scope, Location) {
 
     $scope.map = {};
+    $scope.timeAndRoute = {};
 
     var directionsService = new google.maps.DirectionsService();
     var directionsDisplay;
@@ -28,32 +29,27 @@ angular.module('MyApp')
 
         //we only have one origin so there should only be one row
         var routes = response.rows[0];
+
         var sortable = [];
 
-        var resultText = "Origin: <b>" + response.originAddresses + "</b><br/><br/>";
+        $scope.timeAndRoute.origin = response.originAddresses;
+        $scope.timeAndRoute.destinations = [];
 
-        resultText += "Estimate Travel and  Routes: <br/>";
-
-        for (var i = routes.elements.length - 1; i >= 0; i--) {
-
+        for (var i = 0; i < routes.elements.length; i++) {
           var rteLength = routes.elements[i].duration.value;
-
-          var duration = routes.elements[i].duration.text;
-          var distance = routes.elements[i].distance.text
-
-          resultText += "<b>"+i+ " </b> To: <b>" + response.destinationAddresses[i] + "</b>, " + "Distance: <b>" + distance + "</b> Duration  <b>"+ duration +"</b>  <br/>";
 
           sortable.push([destinations[i], rteLength]);
 
         }
 
-        //sort the result lengths from shortest to longest.
+        // sort the result lengths from shortest to longest.
         sortable.sort(function(a, b) {
           return a[1] - b[1];
         });
 
         //build the waypoints.
         var waypoints = [];
+
         for (j = 0; j < sortable.length - 1; j++) {
           waypoints.push({
             location: sortable[j][0],
@@ -67,8 +63,6 @@ angular.module('MyApp')
         var end = sortable[sortable.length - 1][0];
         //calculate the route with the waypoints
         calculateRoute(start, end, waypoints);
-        //log the routes and duration.
-        document.getElementById('routeExplanation').innerHTML = resultText;
       }
     }
 
@@ -82,6 +76,8 @@ angular.module('MyApp')
           travelMode: google.maps.TravelMode.DRIVING
       };
       directionsService.route(request, function (result, status) {
+        $scope.timeAndRoute.destinations = result.routes[0].legs;
+        $scope.$apply($scope.timeAndRoute);
           if (status == google.maps.DirectionsStatus.OK) {
             directionsDisplay.setDirections(result);
           }
@@ -133,6 +129,10 @@ angular.module('MyApp')
       }
 
       calculateDistances();
+    }
+
+    $scope.refresh = function() {
+      window.location.reload();
     }
 
     $scope.index = Location.get;
