@@ -6,7 +6,7 @@ exports.index = (req, res) => {
       res.json({ locations });
     })
     .catch((errors) => {
-      res.status(400)json({errors})
+      res.status(400).json({errors})
     })
 }
 
@@ -18,7 +18,7 @@ exports.show = (req, res) => {
       res.json({ location })
     })
     .catch((errors) => {
-      res.status(400)json({errors})
+      res.status(400).json({errors})
     })
 }
 
@@ -35,7 +35,7 @@ exports.create = (req, res) => {
   }).save().then((location) => {
     res.json({ location })
   }).catch((errors) => {
-    res.status(400)json({errors})
+    res.status(400).json({errors})
   })
 }
 
@@ -58,7 +58,7 @@ exports.update = (req, res) => {
       res.json({ saved });
     })
     .catch((errors) => {
-      res.status(400)json({errors})
+      res.status(400).json({errors})
     })
 }
 
@@ -70,6 +70,6 @@ exports.delete = (req, res) => {
       res.json({ destroyed });
     })
     .catch((errors) => {
-      res.status(400)json({errors})
+      res.status(400).json({errors})
     })
 }

@@ -10,8 +10,8 @@ const Location = Bookshelf.Model.extend({
   rules : {
     code: 'required',
     name: 'required',
-    lat: 'required|number',
-    lang: 'required|number'
+    lat: 'required',
+    lang: 'required'
   },
 
   initialize: function() {
